@@ -10,18 +10,36 @@
     <!-- Bootstrap -->
 </head>
 <body>
-    <div class="container mt-5 bg-primary ">
-        <?php 
+    <div class="container mt-5 bg-primary  border-primary">
+    <form action="index.php" method="get">
+        <div class="d-flex justify-content-around align-items-baseline p-4">
+            <div>
+                <label for="parking"><strong>Parcheggio</strong></label>
+                <input type="checkbox" id="parking" name="parking">
+            </div>
+            <div>
+                <label for="vote"><strong>Voto (stelle)</strong></label>
+                <input type="number" id="vote" name="vote" min="1" max="5">
+            </div>
+            <button class="btn btn-light"><strong>Submit</strong></button>
+        </div>
+        <hr>
+    </form> 
 
+        <?php 
+        $parking = isset($_GET["parking"]);
+        $vote = isset($_GET["vote"]) ? $_GET["vote"] : 0;
         include 'hotels.php';
 
         foreach ($hotels as $hotel) {
-            echo "Nome: " . $hotel['name'] . "<br>";
-            echo "Description: " . $hotel['description'] . "<br>";
-            echo "Parking: " . $hotel['parking'] . "<br>";
-            echo "Vote: " . $hotel['vote'] . ' ' . "Stars" . "<br>";
-            echo "Distance to Center: " . $hotel['distance_to_center'] . ' ' . "Km" . "<br>";
-            echo "<hr>"; 
+            if ((!$parking || $hotel['parking']) && $hotel['vote'] >= $vote)  {
+                echo "Nome: " . $hotel['name'] . "<br>";
+                echo "Description: " . $hotel['description'] . "<br>";
+                echo "Parking: " . $hotel['parking'] . "<br>";
+                echo "Vote: " . $hotel['vote'] . ' ' . "Stars" . "<br>";
+                echo "Distance to Center: " . $hotel['distance_to_center'] . ' ' . "Km" . "<br>";
+                echo "<hr>"; 
+            }
         }
         
         ?>
