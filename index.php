@@ -11,14 +11,16 @@
 </head>
 <body>
     <div class="container mt-5 bg-primary  border-primary">
+    <h1 class="d-flex justify-content-center">PHP Hotels</h1>
+    <hr>
     <form action="index.php" method="get">
         <div class="d-flex justify-content-around align-items-baseline p-4">
             <div>
-                <label for="parking"><strong>Parcheggio</strong></label>
+                <label for="parking"><strong>Parking</strong></label>
                 <input type="checkbox" id="parking" name="parking">
             </div>
             <div>
-                <label for="vote"><strong>Voto (stelle)</strong></label>
+                <label for="vote"><strong>Vote (Stars)</strong></label>
                 <input type="number" id="vote" name="vote" min="1" max="5">
             </div>
             <button class="btn btn-light"><strong>Submit</strong></button>
